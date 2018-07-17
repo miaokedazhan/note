@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thinkgem.jeesite.modules.mobile.dao.DmApkDao">
+
+	<sql id="dmApkColumns">
+		a.id AS "id",
+		a.packagename AS "packagename",
+		a.name AS "name",
+		a.os AS "os",
+		a.version AS "version",
+		a.url AS "url",
+		a.message AS "message",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate"
+	</sql>
+
+	<sql id="dmApkJoins">
+	</sql>
+
+	<select id="getNewApkForAndroid" resultType="DmApk">
+		SELECT
+		a.packagename AS "packagename",
+		a.name AS "name",
+		a.os AS "os",
+		a.version AS "version",
+		a.url AS "url",
+		a.message AS "message",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate"
+		FROM dm_apk a
+		<include refid="dmApkJoins"/>
+		WHERE a.os = 'Android'
+		and a.packagename = #{packagename}
+		order by a.create_date desc
+		limit 0,1
+	</select>
+
+	<select id="getNewApkForIos" resultType="DmApk">
+		SELECT
+		a.packagename AS "packagename",
+		a.name AS "name",
+		a.os AS "os",
+		a.version AS "version",
+		a.url AS "url",
+		a.message AS "message",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate"
+		FROM dm_apk a
+		<include refid="dmApkJoins"/>
+		WHERE a.os = 'Ios'
+		and a.packagename = #{packagename}
+		order by a.create_date desc
+		limit 0,1
+	</select>
+
+	<select id="getApkList" resultType="DmApk">
+		SELECT
+		a.packagename AS "packagename",
+		a.name AS "name",
+		a.os AS "os",
+		a.version AS "version",
+		a.url AS "url",
+		a.message AS "message",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate"
+		FROM dm_apk a
+		<include refid="dmApkJoins"/>
+		WHERE a.os = 'Android'
+		and a.packagename = #{packagename}
+		order by a.create_date desc
+	</select>
+
+	<select id="get" resultType="DmApk">
+		SELECT
+		<include refid="dmApkColumns"/>
+		FROM dm_apk a
+		<include refid="dmApkJoins"/>
+		WHERE a.id = #{id}
+	</select>
+
+	<select id="checkVersion" resultType="DmApk">
+		SELECT
+		<include refid="dmApkColumns"/>
+		FROM dm_apk a
+		<include refid="dmApkJoins"/>
+		WHERE a.version = #{version}
+	</select>
+
+	<select id="findList" resultType="DmApk">
+		SELECT
+		<include refid="dmApkColumns"/>
+		FROM dm_apk a
+		<include refid="dmApkJoins"/>
+		<where>
+
+			<if test="name != null and name != ''">
+				AND a.name LIKE
+				<if test="dbName == 'oracle'">'%'||#{name}||'%'</if>
+				<if test="dbName == 'mssql'">'%'+#{name}+'%'</if>
+				<if test="dbName == 'mysql'">concat('%',#{name},'%')</if>
+			</if>
+			<if test="os != null and os != ''">
+				AND a.os = #{os}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+
+	<select id="findAllList" resultType="DmApk">
+		SELECT
+		<include refid="dmApkColumns"/>
+		FROM dm_apk a
+		<include refid="dmApkJoins"/>
+		<where>
+
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+
+	<insert id="insert">
+		INSERT INTO dm_apk(
+			id,
+			packagename,
+			name,
+			os,
+			version,
+			url,
+			message,
+			create_by,
+			create_date,
+			update_by,
+			update_date
+		) VALUES (
+			#{id},
+			#{packagename},
+			#{name},
+			#{os},
+			#{version},
+			#{url},
+			#{message},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate}
+		)
+	</insert>
+
+	<update id="update">
+		UPDATE dm_apk SET
+			packagename = #{packagename},
+			name = #{name},
+			os = #{os},
+			version = #{version},
+			url = #{url}
+		WHERE id = #{id}
+	</update>
+
+	<update id="delete">
+		DELETE FROM dm_apk
+		WHERE id = #{id}
+	</update>
+
+	<select id="isAvailableForIos" resultType="java.util.HashMap">
+		SELECT
+		*
+		FROM sys_ios_available
+	</select>
+
+	<update id="updataAvailableForIos" >
+	 update sys_ios_available
+	 set available=#{available}
+	</update>
+
+</mapper>
