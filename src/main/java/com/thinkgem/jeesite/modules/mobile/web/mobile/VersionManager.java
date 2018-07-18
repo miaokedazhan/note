@@ -67,7 +67,7 @@ public class VersionManager {
                 map.put("url", "/version/apkDownload");
                 map.put("version", dmApk.getVersion());
             }
-        } else if (("Ios").equals(os)) {
+        } else if (("iOS").equals(os)) {
             Map<String,Object> maps = dmApkService.isAvailableForIos();
             String available = maps.get("available").toString();
             if(available.equals("0")) {
@@ -77,11 +77,14 @@ public class VersionManager {
                 }
                 if (dmApk.getVersion().equals(version)) {
                     map.put("status", 0);
+                    map.put("version", dmApk.getVersion());
                 } else {
                     map.put("status", 1);
+                    map.put("version", dmApk.getVersion());
                 }
             }else{
                 map.put("status", 2);
+                map.put("version", "");
             }
         } else {
             map.put("isNew", true);
