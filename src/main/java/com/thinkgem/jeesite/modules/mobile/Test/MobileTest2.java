@@ -1,6 +1,7 @@
 package com.thinkgem.jeesite.modules.mobile.Test;
 
 
+import com.thinkgem.jeesite.common.utils.StringUtils;
 import net.sf.json.JSONArray;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.http.client.methods.HttpPost;
@@ -208,13 +209,8 @@ public class MobileTest2  {
     }
 
     @Test
-    public void testZiFu() throws UnsupportedEncodingException {
-
-        String encodeStr = DigestUtils.md5Hex("12223344" + "abc");
-        System.out.println("MD5加密后的字符串为:encodeStr=" + encodeStr);
-
-
-
-
+    public void testZiFu() throws Exception {
+      int i= StringUtils.compareVersion("2.0.3.9","20.2.1.10");
+       System.out.println(i);
     }
 }
