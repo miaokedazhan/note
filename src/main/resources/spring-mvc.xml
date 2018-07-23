@@ -18,6 +18,8 @@
 	<!-- 默认的注解映射的支持，org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping -->
 	<mvc:annotation-driven content-negotiation-manager="contentNegotiationManager">
 		<mvc:message-converters register-defaults="true">
+			<bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>
+
 			<!-- 将StringHttpMessageConverter的默认编码设为UTF-8 -->
 			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
 		    	<constructor-arg value="UTF-8" />
