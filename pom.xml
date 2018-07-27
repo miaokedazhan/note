@@ -3,14 +3,14 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	
-	<groupId>com.thinkgem.jeesite</groupId>
-	<artifactId>jeesite</artifactId>
+	<groupId>com.haoxie.note</groupId>
+	<artifactId>note</artifactId>
 	<version>1.2.7</version>
 	<packaging>war</packaging>
 	
-	<name>JeeSite</name>
-	<url>http://thinkgem.github.com/jeesite</url>
-	<inceptionYear>2012-2016</inceptionYear>
+	<name>note</name>
+	<url>http://www.how-show.com/</url>
+	<inceptionYear>2018-2019</inceptionYear>
 	
 	<!-- 项目属性 -->
 	<properties>
@@ -643,7 +643,7 @@
 
 		<!-- 自定义jar依赖包
 		<dependency>
-			<groupId>com.thinkgem.jeesite</groupId>
+			<groupId>com.haoxie.note</groupId>
 			<artifactId>test-core</artifactId>
 			<version>1.0</version>
 			<scope>system</scope>
@@ -912,18 +912,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	
 
-	
-	<!-- 开发者信息 -->
-	<developers>  
-		<developer>
-			<id>thinkgem</id>
-			<name>WangZhen</name>
-			<email>thinkgem at 163.com</email>
-			<roles><role>Project lead</role></roles>
-			<timezone>+8</timezone>
-		</developer>
-	</developers>
-	
 </project>
