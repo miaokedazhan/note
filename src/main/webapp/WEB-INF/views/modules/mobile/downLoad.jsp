@@ -50,7 +50,7 @@
                 <p><img style="width: 100%; height: auto;display:none;" src="${ctxStatic}/downLoad/005.jpg"></p>
                 <p align="center">
 
-                    深圳市我好数码科技有限公司
+                    深圳市好写科技有限公司
 
                 </p>
                 <p align="center">
