@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.io.Serializable;
 import java.security.SecureRandom;
 import java.util.Calendar;
+import java.util.Random;
 import java.util.UUID;
 
 /**
@@ -51,7 +52,7 @@ public class IdGen implements IdGenerator, SessionIdGenerator {
 	public static synchronized  String getID12(){
 		Calendar calendar = Calendar.getInstance();
 		Long data= calendar.getTime().getTime();
-		return data.toString().substring(1);
+		return data.toString().substring(4)+new Random().nextInt(1000);
 	}
 	
 	/**
