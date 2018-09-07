@@ -253,7 +253,7 @@ public class YunBiJiController extends BaseController {
                         dmYunbiji.setName(dmUser);
                         dmYunbiji.setBiji(fileUrl);
                         String id = IdGen.getID12();
-                        dmYunbiji.setId(id);
+                        dmYunbiji.setId(IdGen.uuid());
                         dmYunbiji.setBijiSize(String.valueOf(item.getSize()));
                         dmYunbiji.setBijiType(".note");
                         dmYunbijiService.saveYunBiJi(dmYunbiji);
