@@ -1,5 +1,6 @@
 package com.haoxie.note.modules.mobile.web.mobile;
 
+import com.haoxie.note.common.utils.StringUtils;
 import com.haoxie.note.modules.mobile.entity.DmApk;
 import org.apache.commons.io.FileUtils;
 import org.springframework.http.HttpHeaders;
@@ -22,8 +23,30 @@ import java.io.*;
 public class AboutController {
 
     @RequestMapping(value="/aboutUse", produces="application/pdf")
-    public ResponseEntity<byte[]> aboutUse(HttpServletRequest request, HttpServletResponse resp) {
-        String path = request.getSession().getServletContext().getRealPath("/") + "/userfiles/file/使用指引.pdf";
+    public ResponseEntity<byte[]> aboutUse(HttpServletRequest request, HttpServletResponse resp,String type) {
+        String path=null;
+        if(StringUtils.isNotBlank(type)){
+            if(type.equals("1")){
+                //简体中文
+                path = request.getSession().getServletContext().getRealPath("/") + "/userfiles/file/使用指引.pdf";
+            }else if(type.equals("2")){
+                //繁体中文
+                path = request.getSession().getServletContext().getRealPath("/") + "/userfiles/file/使用指引2.pdf";
+            }
+            else if(type.equals("3")){
+                //英文
+                path = request.getSession().getServletContext().getRealPath("/") + "/userfiles/file/使用指引3.pdf";
+            }
+            else if(type.equals("4")){
+                //日文
+                path = request.getSession().getServletContext().getRealPath("/") + "/userfiles/file/使用指引4.pdf";
+            }else {
+                path = request.getSession().getServletContext().getRealPath("/") + "/userfiles/file/使用指引.pdf";
+            }
+
+        }else {
+            path = request.getSession().getServletContext().getRealPath("/") + "/userfiles/file/使用指引.pdf";
+        }
         String fileName = "使用指引.pdf";
         File f=new File(path);
         InputStream in =null;
@@ -57,8 +80,29 @@ public class AboutController {
         return response;
     }
     @RequestMapping(value="/aboutHaoXie", produces="application/pdf")
-    public ResponseEntity<byte[]> aboutHaoXie(HttpServletRequest request, HttpServletResponse resp) {
-        String path = request.getSession().getServletContext().getRealPath("/") + "/userfiles/file/关于好写.pdf";
+    public ResponseEntity<byte[]> aboutHaoXie(HttpServletRequest request, HttpServletResponse resp,String type) {
+        String path=null;
+        if(StringUtils.isNotBlank(type)){
+            if(type.equals("1")){
+                //简体中文
+                path = request.getSession().getServletContext().getRealPath("/") + "/userfiles/file/关于好写.pdf";
+            }else if(type.equals("2")){
+                //繁体中文
+                path = request.getSession().getServletContext().getRealPath("/") + "/userfiles/file/关于好写2.pdf";
+            }
+            else if(type.equals("3")){
+                //英文
+                path = request.getSession().getServletContext().getRealPath("/") + "/userfiles/file/关于好写3.pdf";
+            }
+            else if(type.equals("4")){
+                //日文
+                path = request.getSession().getServletContext().getRealPath("/") + "/userfiles/file/关于好写4.pdf";
+            }else {
+                path = request.getSession().getServletContext().getRealPath("/") + "/userfiles/file/关于好写.pdf";
+            }
+        }else {
+            path = request.getSession().getServletContext().getRealPath("/") + "/userfiles/file/关于好写.pdf";
+        }
         String fileName = "关于好写.pdf";
         File f=new File(path);
         InputStream in =null;
